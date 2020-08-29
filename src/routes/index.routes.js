@@ -32,7 +32,6 @@ router.get('/',(req,res) => {
   firebase.database().ref('Employee')
   .once('value')
   .then( (snapshot)=> {
-    console.log(snapshot.val())
     res.json(snapshot.val())
   })
 
