@@ -1,6 +1,6 @@
 ## Installation 🚀
 
-Go to **/bdb** directory
+Go to **/backend** directory
 
 Use docker to install container with node js v14.
 
@@ -17,6 +17,11 @@ Start the rest server api with the command
 ```bash
 docker-compose up
 ```
+
+
+Go to **/front** directory and read *README.md*
+
+
 The API rest url's :
 
 ```bash

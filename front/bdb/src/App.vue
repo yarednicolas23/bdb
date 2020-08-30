@@ -7,12 +7,11 @@
           <form class="col s12" v-on:submit.prevent="addEmployee">
             <div class="row">
               <div class="input-field col s12">
-                <input id="fullname" v-value="employee.create.fullname" type="text" class="validate" required>
-                <label for="fullname">Full Name</label>
+                <input id="fullname" v-model="employee.create.fullname" placeholder="Full name" type="text" class="validate" required>
               </div>
             </div>
             <div class="row">
-              <div class="col s12"> <button type="submit" name="button"></button> </div>
+              <div class="col s12"> <button class="btn indigo waves waves-light col s12" type="submit" name="button">save</button></div>
             </div>
           </form>
         </div>
@@ -44,6 +43,7 @@
 
 <script>
 import 'materialize-css/dist/css/materialize.css'
+import M from 'materialize-css'
 import axios from 'axios'
 
 export default {
@@ -64,8 +64,8 @@ export default {
     },
     addEmployee: function() {
       axios
-        .post('http://localhost:8081/create',{fullname: this.employee.create.fullname})
-        .then(response => (this.employee.list = response.data))
+        .post('http://localhost:8081/create',{name: this.employee.create.fullname})
+        .then(response => {M.toast("Register ok");console.log(response)})
     }
   }
 }
