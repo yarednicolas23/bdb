@@ -23,18 +23,30 @@ firebase.initializeApp(firebaseConfig);
 
 //var database = firebase.database();
 
+let bodyParser = require('body-parser')
 const router = Router()
 
-function getEmployeeList() {
-  return
-}
-router.get('/',(req,res) => {
+router.use(bodyParser.json())
+router.use(bodyParser.urlencoded({ extended: true }))
+
+router.get('/read',(req,res) => {
   firebase.database().ref('Employee')
   .once('value')
   .then( (snapshot)=> {
     res.json(snapshot.val())
   })
-
+})
+router.post('/create',(req,res) => {
+  if (req.body.name!=null) {
+    firebase.database().ref('Employee').push({
+      fullname: req.body.name,
+    }).then((snapshot)=>{
+      console.log(req.body)
+      res.json(req.body)
+    })
+  }else {
+    res.status(500).send('Error name is undefined')
+  }
 })
 
 module.exports=router
