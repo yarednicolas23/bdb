@@ -30,6 +30,8 @@ router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ extended: true }))
 
 router.get('/read',(req,res) => {
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
   firebase.database().ref('Employee')
   .once('value')
   .then( (snapshot)=> {

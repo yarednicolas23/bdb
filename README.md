@@ -1,11 +1,11 @@
 ## Installation 🚀
 
-Go to /bdb directory
+Go to **/bdb** directory
 
 Use docker to install container with node js v14.
 
 ```bash
-docker build
+docker build -t bdb .
 ```
 Use docker-compose to init container.
 
@@ -20,13 +20,13 @@ docker-compose up
 The API rest url's :
 
 ```bash
-http://localhost:8080/read
+http://localhost:8081/read
 ```
 
 ```bash
-http://localhost:8080/create
+http://localhost:8081/create
 
 ```
 ```bash
-http://localhost:8080/delete
+http://localhost:8081/delete
 ```
