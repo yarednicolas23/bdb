@@ -19,7 +19,7 @@ docker-compose up
 ```
 
 
-Go to **/front** directory and read *README.md*
+Go to **/web** directory and read *README.md*
 
 
 The API rest url's :

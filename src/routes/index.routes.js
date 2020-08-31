@@ -19,7 +19,7 @@ var firebaseConfig = {
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig)
 
 //var database = firebase.database();
 
@@ -28,6 +28,11 @@ const router = Router()
 
 router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ extended: true }))
+router.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+  next()
+})
 
 router.get('/read',(req,res) => {
   // Website you wish to allow to connect
@@ -39,13 +44,19 @@ router.get('/read',(req,res) => {
   })
 })
 router.post('/create',(req,res) => {
-
   if (req.body.name!=null) {
-    firebase.database().ref('Employee').push({
-      fullname: req.body.name,
-    }).then((snapshot)=>{
-      console.log(req.body)
-      res.json(req.body)
+    firebase.database().ref('Employee')
+    .push({fullname: req.body.name,})
+    .then((snapshot)=>{res.json(req.body)})
+  }else {
+    res.status(500).send('Error name is undefined')
+  }
+})
+router.post('/delete',(req,res) => {
+  if (req.body.key!=null) {
+    firebase.database().ref('Employee').child(req.body.key).set({})
+    .then((snapshot)=>{
+      res.json({"message":"deleted"})
     })
   }else {
     res.status(500).send('Error name is undefined')
