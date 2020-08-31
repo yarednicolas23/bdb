@@ -18,11 +18,12 @@ Start the rest server api with the command
 docker-compose up
 ```
 
+## Web client
 
 Go to **/web** directory and read *README.md*
 
 
-The API rest url's :
+## The API rest url's
 
 ```bash
 http://localhost:8081/read
